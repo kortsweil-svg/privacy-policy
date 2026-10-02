@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מדריך לתלמיד – זמן מסך</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A18;
+    --muted: #5F6B61;
+    --green: #3B6D11;
+    --forest: #2C3A2E;
+    --amber: #D98C1A;
+    --red: #C2402F;
+    --bg: #F4F6F3;
+    --card: #FFFFFF;
+    --line: #DCE3DC;
+    --soft: #EAF0E7;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #EEF1EC; --muted: #A9B4AA; --green: #8CC45A; --forest: #CFE3C4;
+      --amber: #F0B04A; --red: #EE7A68; --bg: #141814; --card: #1D231D; --line: #2F382F; --soft: #222A21;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #EEF1EC; --muted: #A9B4AA; --green: #8CC45A; --forest: #CFE3C4;
+    --amber: #F0B04A; --red: #EE7A68; --bg: #141814; --card: #1D231D; --line: #2F382F; --soft: #222A21;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Assistant", "Arial Hebrew", "Segoe UI", Arial, sans-serif;
+    font-size: 18px; line-height: 1.65; text-align: right;
+  }
+  main { max-width: 680px; margin: 0 auto; padding: 28px 20px 64px; }
+  h1, h2 { font-family: "Secular One", "Assistant", Arial, sans-serif; font-weight: 400; color: var(--forest); line-height: 1.25; }
+  h1 { font-size: 40px; margin: 8px 0 6px; }
+  h2 { font-size: 26px; margin: 48px 0 12px; }
+  p { margin: 0 0 14px; }
+  a { color: var(--green); }
+  .lead { font-size: 20px; color: var(--muted); max-width: 34em; }
+
+  /* hero: the week of flames */
+  .week { display: flex; gap: 8px; margin: 26px 0 8px; direction: rtl; }
+  .day { flex: 1; text-align: center; }
+  .day .dot {
+    aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
+    font-size: 22px; background: var(--card); border: 1.5px solid var(--line);
+  }
+  .day.lit .dot { background: #FFF3DE; border-color: var(--amber); }
+  .day.out .dot { filter: grayscale(1); opacity: .45; }
+  .day.today .dot { border-style: dashed; border-color: var(--muted); font-size: 18px; }
+  .day .lbl { font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .legend { font-size: 15px; color: var(--muted); }
+
+  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 16px 0; }
+  ol.steps li { counter-increment: s; position: relative; padding: 0 44px 14px 0; }
+  ol.steps li::before {
+    content: counter(s); position: absolute; right: 0; top: 0;
+    width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: #fff;
+    display: grid; place-items: center; font-weight: 700; font-size: 16px;
+  }
+  .must {
+    background: var(--soft); border-right: 4px solid var(--green);
+    padding: 12px 16px; border-radius: 6px; margin: 4px 0 8px; font-weight: 600;
+  }
+
+  .tbl { overflow-x: auto; margin: 16px 0 8px; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; font-size: 16px; }
+  th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: right; }
+  th { background: var(--soft); color: var(--forest); font-weight: 700; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 600; color: var(--forest); min-width: 110px; }
+  th.ios::before { content: ""; } 
+
+  ul { padding-right: 22px; margin: 8px 0 14px; }
+  li { margin-bottom: 8px; }
+  .chip { display: inline-block; padding: 1px 10px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #fff; }
+  .g { background: var(--green); } .a { background: var(--amber); } .r { background: var(--red); }
+
+  dl { margin: 0; }
+  dt { font-weight: 700; color: var(--forest); margin-top: 16px; }
+  dd { margin: 4px 0 0; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 15px; border-top: 1px solid var(--line); padding-top: 16px; }
+  @media (max-width: 420px) { body { font-size: 17px; } h1 { font-size: 34px; } .day .dot { font-size: 18px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>מדריך לתלמיד</h1>
+  <p class="lead">בוחרים יעד יומי לזמן באפליקציות, והאפליקציה בודקת כל יום אם עמדתם בו. כל יום ביעד מדליק להבה.</p>
+
+  <div class="week" aria-label="דוגמה לשבוע: חמישה ימים ביעד, יום אחד חרגת, והיום עוד לא נגמר">
+    <div class="day lit"><div class="dot">🔥</div><div class="lbl">א'</div></div>
+    <div class="day lit"><div class="dot">🔥</div><div class="lbl">ב'</div></div>
+    <div class="day out"><div class="dot">🔥</div><div class="lbl">ג'</div></div>
+    <div class="day lit"><div class="dot">🔥</div><div class="lbl">ד'</div></div>
+    <div class="day lit"><div class="dot">🔥</div><div class="lbl">ה'</div></div>
+    <div class="day lit"><div class="dot">🔥</div><div class="lbl">ו'</div></div>
+    <div class="day today"><div class="dot">⏳</div><div class="lbl">ש'</div></div>
+  </div>
+  <p class="legend">להבה דולקת: עמדת ביעד. כבויה: חרגת. שעון חול: היום עוד לא נגמר. חמישה ימים כאלה בשבוע = כוכב.</p>
+
+  <h2>התקנה והרשמה</h2>
+  <p>ההתקנה לוקחת כמה דקות ונעשית פעם אחת. תצטרך את קוד המוסד שקיבלת מהמורה.</p>
+  <ol class="steps">
+    <li>מתקינים את האפליקציה מהחנות. השם שונה בין החנויות (ראה טבלה).</li>
+    <li>פותחים ובוחרים "הרשמה". מקלידים קוד מוסד, שם וסיסמה. מי שכבר נרשם בוחר "כניסה".
+      <div class="must">נרשמים עם השם האמיתי שלך: שם פרטי ושם משפחה, כמו שהמורה מכיר אותך. בלי שם אמיתי המורה לא יוכל לזהות אותך.</div>
+    </li>
+    <li>מאשרים את ההסכמה לשיתוף הנתונים עם המורה.</li>
+    <li>מאשרים את ההרשאות (בסעיף הבא).</li>
+    <li>בוחרים יעד יומי. אי אפשר להמשיך בלי לבחור.</li>
+  </ol>
+  <div class="tbl"><table>
+    <tr><th></th><th>אייפון</th><th>אנדרואיד</th></tr>
+    <tr><td>חנות ושם</td><td>App Store, בשם "זמן מסך"</td><td>Google Play, בשם "שיתוף זמן מסך"</td></tr>
+    <tr><td>גרסה נדרשת</td><td>iOS 17.4 ומעלה</td><td>כל מכשיר עדכני</td></tr>
+    <tr><td>מותר לסגור את האפליקציה?</td><td>כן. המדידה ממשיכה גם כשהיא סגורה</td><td>כן. הנתונים נשלחים בפתיחה הבאה ובסנכרון הלילי</td></tr>
+  </table></div>
+
+  <h2>הרשאות</h2>
+  <p>בלי הרשאה לנתוני השימוש האפליקציה לא יכולה למדוד כלום, ואין להבות. מאשרים פעם אחת, בהתקנה.</p>
+  <div class="tbl"><table>
+    <tr><th></th><th>אייפון</th><th>אנדרואיד</th></tr>
+    <tr><td>הרשאת המדידה</td><td>"גישה לזמן מסך". מאשרים ב-Face ID או בקוד הטלפון</td><td>"גישה לנתוני שימוש". נפתח מסך הגדרות, בוחרים את האפליקציה ומדליקים</td></tr>
+    <tr><td>חייב להיות דלוק</td><td>הגדרות ← זמן מסך ← "פעילות ביישומים ובאתרים"</td><td>אין</td></tr>
+    <tr><td>בדיקה שההרשאה פעילה</td><td>הגדרות ← זמן מסך ← "יישומים עם גישה לזמן מסך": הכפתור של האפליקציה דלוק</td><td>הגדרות ← אפליקציות ← גישה לנתוני שימוש: האפליקציה מורשה</td></tr>
+    <tr><td>מומלץ</td><td>לכבות "שיתוף בין מכשירים", כדי שלא ייספר זמן מאייפד או ממחשב</td><td>אין</td></tr>
+    <tr><td>התראות</td><td>מאשרים כשהאפליקציה מבקשת</td><td>מאשרים כשהאפליקציה מבקשת</td></tr>
+  </table></div>
+  <p>אם האפליקציה מבקשת את ההרשאה שוב ושוב, בדוק את השורה "בדיקה שההרשאה פעילה".</p>
+
+  <h2>היעד היומי</h2>
+  <p>היעד הוא כמה שעות מותר לך באפליקציות ביום. בוחרים אותו בכניסה הראשונה, והוא קובע את צבע הכוכב.</p>
+  <div class="tbl"><table>
+    <tr><th>יעד</th><th>כוכב</th></tr>
+    <tr><td>3 שעות</td><td>זהב</td></tr>
+    <tr><td>4 שעות</td><td>כסף</td></tr>
+    <tr><td>5 שעות</td><td>ארד</td></tr>
+    <tr><td>6, 7 או 8 שעות</td><td>רגיל</td></tr>
+  </table></div>
+  <ul>
+    <li>היעד הראשון חל כבר מהיום שבו בחרת אותו.</li>
+    <li>שינוי יעד נעשה בהגדרות (הגלגל בראש המסך), וחל מהיום שלמחרת. היום נמדד עד הסוף לפי היעד שהיה בתחילתו.</li>
+    <li>בהגדרות אפשר לבחור גם "ללא" יעד. במצב הזה אין להבות, כוכבים ודירוג.</li>
+  </ul>
+
+  <h2>המסך הראשי</h2>
+  <ul>
+    <li><strong>כרטיס היום:</strong> הזמן באפליקציות עד עכשיו, ופס מול היעד. <span class="chip g">ירוק</span> בתוך היעד, <span class="chip a">כתום</span> מתקרב, <span class="chip r">אדום</span> חרגת.</li>
+    <li><strong>להבות:</strong> שורה של ימים א'–ש', כמו בראש המדריך.</li>
+    <li><strong>כוכב שבועי:</strong> עמדת ביעד ב-5 מתוך 7 ימי השבוע? קיבלת כוכב.</li>
+    <li><strong>גביע חודשי:</strong> 4 כוכבי זהב, כסף או ארד בחודש מומרים לגביע, שנאסף ב"היכל הגביעים השנתי". כרטיס הכוכבים מציג רק את החודש הנוכחי ומתאפס בתחילת כל חודש.</li>
+    <li><strong>דירוג:</strong> מקומך השבוע לפי מספר הימים שבהם עמדת ביעד, מול תלמידים של אותו מורה עם אותו יעד. מופיע אחרי יום אחד לפחות ביעד, ורק כשיש לפחות 3 תלמידים עם אותו יעד.</li>
+  </ul>
+
+  <h2>מתי הנתונים מתעדכנים</h2>
+  <p>כל יום נסגר בחצות, והתוצאה שלו נקבעת אוטומטית.</p>
+  <div class="tbl"><table>
+    <tr><th></th><th>אייפון</th><th>אנדרואיד</th></tr>
+    <tr><td>מה נמדד</td><td>זמן באפליקציות לפי אפל, בלי מסך הבית ומסך הנעילה. לכן המספר נמוך מעט מההגדרות של אפל</td><td>זמן באפליקציות לפי המכשיר</td></tr>
+    <tr><td>מתי נקבעת תוצאת היום</td><td>בכל לילה קצת אחרי חצות, גם כשהאפליקציה סגורה</td><td>בסנכרון הלילי (23:50) ובפתיחה הבאה של האפליקציה</td></tr>
+    <tr><td>מתי רואים את הלהבה של אתמול</td><td>בפתיחה הראשונה של האפליקציה בבוקר</td><td>בפתיחה הראשונה של האפליקציה בבוקר</td></tr>
+    <tr><td>מה צריך כדי שזה יעבוד</td><td>טלפון דלוק ומחובר לאינטרנט בחצות. אם לא, התוצאה נשלחת בפתיחה הבאה</td><td>לפתוח את האפליקציה מדי פעם</td></tr>
+  </table></div>
+  <p>תזכורות, בשתי הפלטפורמות: <strong>07:00</strong> תזכורת בוקר, <strong>17:00</strong> עדכון אחר הצהריים. אפשר לכבות כל אחת מהן בהגדרות.</p>
+
+  <h2>פרטיות</h2>
+  <p>המורה רואה רק כמה זמן היה לך ביום ובכמה ימים עמדת ביעד. הוא לא רואה באילו אפליקציות השתמשת, מה כתבת או באילו אתרים ביקרת.</p>
+  <ul>
+    <li>מורה רואה רק תלמידים מהמוסד שלו, ורק בהסכמתך.</li>
+    <li>בדירוג מופיע מקום בלבד, בלי שמות של תלמידים אחרים.</li>
+    <li>אין פרסומות, והמידע לא נמכר לאף אחד.</li>
+    <li>הפירוט לפי אפליקציות נשאר בטלפון ולא נשלח לשרת, גם באייפון וגם באנדרואיד.</li>
+  </ul>
+
+  <h2>שאלות נפוצות</h2>
+  <dl>
+    <dt>למה הלהבה של היום לא דולקת?</dt>
+    <dd>היום עוד לא נגמר. הלהבה נקבעת אחרי חצות, ומופיעה בפתיחה של מחר.</dd>
+    <dt>שיניתי יעד והוא לא השתנה.</dt>
+    <dd>שינוי יעד חל ממחר. בהגדרות מופיעה שורה שאומרת מה היעד היום ומה יהיה מחר.</dd>
+    <dt>למה אין לי דירוג?</dt>
+    <dd>הדירוג מופיע אחרי יום ראשון ביעד, ורק כשיש לפחות 3 תלמידים של אותו מורה עם אותו יעד.</dd>
+    <dt>הכוכב של החודש שעבר נעלם.</dt>
+    <dd>כרטיס הכוכבים מציג רק את החודש הנוכחי. הכוכב נשמר ונספר בסך השנתי.</dd>
+    <dt>החלפתי טלפון.</dt>
+    <dd>מתקינים, בוחרים "כניסה" עם אותו שם וסיסמה, ומאשרים שוב את ההרשאות.</dd>
+  </dl>
+  <div class="tbl"><table>
+    <tr><th>שאלה</th><th>אייפון</th><th>אנדרואיד</th></tr>
+    <tr><td>למה המספר שונה מההגדרות של הטלפון?</td><td>האפליקציה סופרת רק זמן באפליקציות. בהגדרות של אפל מופיע גם זמן במסך הבית ובמסך הנעילה</td><td>האפליקציה סופרת זמן באפליקציות, ולכן היא עשויה להיות שונה מסך זמן המסך של המכשיר</td></tr>
+    <tr><td>לא קיבלתי להבה על אתמול, למרות שעמדתי ביעד</td><td>פתח את האפליקציה. אם הטלפון היה כבוי בחצות, ייתכן שהיום הזה לא נמדד</td><td>פתח את האפליקציה. היא תשלח את הימים שלא סונכרנו</td></tr>
+    <tr><td>האפליקציה מבקשת הרשאה שוב ושוב</td><td>הגדרות ← זמן מסך: ודא ש"פעילות ביישומים ובאתרים" דלוקה, ושהכפתור של האפליקציה תחת "יישומים עם גישה לזמן מסך" דלוק</td><td>הגדרות ← אפליקציות ← גישה לנתוני שימוש: ודא שהאפליקציה מורשה</td></tr>
+    <tr><td>אפשר לסגור את האפליקציה לגמרי?</td><td>כן. המדידה והשליחה הלילית קורות בלי קשר אליה</td><td>כן, אבל כדאי לפתוח אותה מדי פעם כדי שהנתונים יסונכרנו</td></tr>
+  </table></div>
+
+  <footer>בעיה שלא מופיעה כאן? פנה למורה.</footer>
+</main>
+</body>
+</html>
